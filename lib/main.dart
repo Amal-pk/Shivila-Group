@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shivila_group/App/Splash/Controller/splash_controller.dart';
 import 'package:shivila_group/App/Splash/View/splash.dart';
 
 void main() {
@@ -10,13 +12,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Shivila Group',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => SplashController(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Shivila Group',
+        theme: ThemeData(
+          primarySwatch: Colors.purple,
+        ),
+        home: const Splash(),
       ),
-      home: const Splash(),
     );
   }
 }
